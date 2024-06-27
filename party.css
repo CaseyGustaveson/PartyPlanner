@@ -1,0 +1,63 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form#addParty {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  form#addParty label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  form#addParty input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  form#addParty button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  form#addParty button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* List Styles */
+  ul#parties {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  ul#parties li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
