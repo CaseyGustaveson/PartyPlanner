@@ -45,3 +45,66 @@ function renderParties() {
         const currentParty = state.parties[i];
 
         const formattedDate = new Date(currentParty.date).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+        });
+
+        const partyItem = document.createElement("li");
+
+        const partyInfo = `
+            <ul>
+                <li>${currentParty.name}</li>
+                <li>${currentParty.location}</li>
+                <li>${currentParty.description}</li>
+                <li>${formattedDate}</li> 
+                <li>${currentParty.time}</li> 
+            </ul>`;
+        partyItem.innerHTML = partyInfo;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => deleteParty(currentParty.id));
+
+        partyItem.appendChild(deleteButton);
+        partyList.appendChild(partyItem);
+    }
+}
+
+async function addParty(event) {
+    event.preventDefault();
+
+    const nameInput = document.querySelector('input[name="name"]');
+    const descriptionPartyInput = document.querySelector('input[name="descriptionOfParty"]');
+    const dateInput = document.querySelector('input[name="date"]');
+    const locationInput = document.querySelector('input[name="location"]');
+    const timeInput = document.querySelector('input[name="time"]');
+
+    const name = nameInput.value;
+    const description = descriptionPartyInput.value;
+    const date = dateInput.value;
+    const location = locationInput.value;
+    const time = timeInput.value;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name,
+                description,
+                date,
+                location,
+                time,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to create party");
+        }
+
+        render();
+    } catch (error) {
+        console.error(error);
+    }
+}
